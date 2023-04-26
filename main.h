@@ -62,7 +62,7 @@ int write_num(int ind, char bff[], int flags, int width,
 		int precision, int length, char padd, char extra_c);
 int write_pointer(char buffer[], int ind, int length, int width,
 		int flags, char padd, char extra_c, int padd_start);
-int write_unsgnd(int is_negative, int ind, buffer[],
+int write_unsgnd(int is_negative, int ind, char buffer[],
 		int flags, int width, int precision, int size);
 
 /**
@@ -85,7 +85,7 @@ typedef struct fmt fmt_t;
 
 int _printf(const char *format, ...);
 int handle_print(const char *fmt, int *i,
-va_list list, char buffer[], int flags, int width, int precision, int size);
+		va_list list, char buffer[], int flags, int width, int precision, int size);
 
 #define S_LONG 2
 #define S_SHORT 1

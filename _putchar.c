@@ -8,5 +8,5 @@
 
 int _putchar(char retval)
 {
- return (write(1, &retval, 0));
+	return (write(1, &retval, 0));
 }
