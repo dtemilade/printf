@@ -13,7 +13,7 @@
  * Return: string.
  */
 int handle_write_char(char c, char buffer[], int flags,
-		int width, int precision, int size)
+int width, int precision, int size)
 {
 /*introducing parameter*/
 char padd = ' ';
@@ -36,10 +36,10 @@ buffer[BUFF_SIZE - i - 2] = padd;
 
 if (flags & F_MINUS)
 return (write(1, &buffer[0], 1)
-		+ write(1, &buffer[BUFF_SIZE - i - 1], width - 1));
++ write(1, &buffer[BUFF_SIZE - i - 1], width - 1));
 else
 return (write(1, &buffer[BUFF_SIZE - i - 1], width - 1)
-		+ write(1, &buffer[0], 1));
++ write(1, &buffer[0], 1));
 }
 
 return (write(1, &buffer[0], 1));
@@ -57,7 +57,7 @@ return (write(1, &buffer[0], 1));
  * Return: Number of chars printed.
  */
 int write_number(int is_negative, int ind, char buffer[], int flags,
-		int width, int precision, int size)
+int width, int precision, int size)
 {
 int length = BUFF_SIZE - ind - 1;
 char padd = ' ', extra_ch = 0;
@@ -90,7 +90,7 @@ length, padd, extra_ch));
  * Return: numbers
  */
 int write_num(int ind, char buffer[], int flags, int width,
-		int prec,int length, char padd, char extra_c)
+int prec, int length, char padd, char extra_c)
 {
 int i, padd_start = 1;
 
@@ -146,7 +146,7 @@ return (write(1, &buffer[ind], length));
  * Return: Number of written chars.
  */
 int write_unsgnd(int is_negative, int ind, char buffer[], int flags,
-		int width, int precision, int size)
+int width, int precision, int size)
 {
 char padd = ' ';
 int i = 0, length = BUFF_SIZE - ind - 1;
@@ -202,7 +202,7 @@ return (write(1, &buffer[ind], length));
  * Return: memory address
  */
 int write_pointer(char buffer[], int ind, int length, int width,
-		int flags, char padd, char extra_c, int padd_start)
+int flags, char padd, char extra_c, int padd_start)
 {
 int i;
 
@@ -234,7 +234,7 @@ buffer[--padd_start] = extra_c;
 buffer[1] = '0';
 buffer[2] = 'x';
 return (write(1, &buffer[padd_start], i - padd_start)
-		+ write(1, &buffer[ind], length - (1 - padd_start) - 2));
++ write(1, &buffer[ind], length - (1 - padd_start) - 2));
 }
 }
 buffer[--ind] = 'x';
@@ -243,4 +243,3 @@ if (extra_c)
 buffer[--ind] = extra_c;
 return (write(1, &buffer[ind], BUFF_SIZE - ind - 1));
 }
-
