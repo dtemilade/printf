@@ -44,22 +44,21 @@ int print_int(va_list types, char buffer[], int flags,
 
 	if (n == 0)
 		buffer[i--] = '0';
+	buffer[BUFF_SIZE - 1] = '\0';
 
-		buffer[BUFF_SIZE - 1] = '\0';
-		num = (unsigned long int)n;
-		if (n < 0)
-		{
-			num = (unsigned long int)((-1) * n);
-			is_negative = 1;
-		}
+	num = (unsigned long int)n;
+	if (n < 0)
+	{
+		num = (unsigned long int)((-1) * n);
+		is_negative = 1;
+	}
+	while (num > 0)
+	{
+		buffer[i--] = (num % 10) + '0';
+		num = num / 10;
+	}
 
-		while (num > 0)
-		{
-			buffer[i--] = (num % 10) + '0';
-			num = num / 10;
-		}
-
-		i++;
+	i++;
 
 	return (write_number(is_negative, i, buffer,
 				flags, width, precision, size));
@@ -79,9 +78,9 @@ int print_binary(va_list types, char buffer[], int flags,
 		int width, int precision, int size)
 {
 	/*introducing parameters for usage in prototype*/
-	unsigned int var1 var2, i, sum;
+	unsigned int var1, var2, i, sum = 0;
 	unsigned int a[32];
-	int count;
+	int count = 0;
 
 	UNUSED(width);
 	UNUSED(size);
@@ -97,7 +96,7 @@ int print_binary(va_list types, char buffer[], int flags,
 		var2 /= 2;
 		a[i] = (var1 / var2) % 2;
 	}
-	for (i = 0, sum = 0, count = 0; i < 32; i++)
+	for (i = 0; i < 32; i++)
 	{
 		sum = sum + a[i];
 		if (sum || i == 31)
