@@ -26,16 +26,12 @@ int _printf(const char *format, ...)
 	int precision, width, size, flags, buff_ind;
 	va_list list;
 
-	/*initializing variable parameters*/
 	x = 0;
 	y = 0;
 	buff_ind = 0;
-
 	/*declaring conditional statements*/
-
 	if (format == NULL)
 		return (-1);
-
 	va_start(list, format);
 	for (i = 0; format && format[i] != '\0'; i++)
 	{
@@ -48,7 +44,6 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			/*output to the terminal*/
 			print_buffer(buffer, &buff_ind);
 			flags = get_flags(format, &i);
 			width = get_width(format, &i, list);
@@ -64,6 +59,5 @@ int _printf(const char *format, ...)
 	}
 	print_buffer(buffer, &buff_ind);
 	va_end(list);
-
 	return (y);
 }
